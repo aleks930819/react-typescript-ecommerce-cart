@@ -5,6 +5,8 @@ import Card from '../UI/Card';
 const Products = () => {
   const { data } = useGetProductsQuery();
 
+  
+
   return (
     <div className="grid grid-cols-4 gap-4 w-3/4 mx-auto mt-[200px] mb-[200px]">
       {data?.map((item) => (
