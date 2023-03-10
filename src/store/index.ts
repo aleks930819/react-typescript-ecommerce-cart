@@ -1,11 +1,11 @@
 
 import { configureStore } from '@reduxjs/toolkit';
 import productsApi from './apis/productsApi';
-import cartCountReducer from './slices/cartCountSlice';
+import cartReducer from './slices/cartSlice';
 
 export const store = configureStore({
     reducer: {
-        cartCount: cartCountReducer,
+        cartCount: cartReducer,
         [productsApi.reducerPath]: productsApi.reducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsApi.middleware),
@@ -16,5 +16,6 @@ export type AppDispatch = typeof store.dispatch;
 
 
 export const selectCartCount = (state: RootState) => state.cartCount.value;
+export const isCartOpen = (state: RootState) => state.cartCount.isCartOpen;
 
 export { useGetProductsQuery } from './apis/productsApi';

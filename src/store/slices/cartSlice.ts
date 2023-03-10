@@ -3,15 +3,17 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface InitialState {
     value: number;
     products: number[]
+    isCartOpen: boolean;
 }
 
 const initialState: InitialState = {
     value: 0,
-    products: []
+    products: [],
+    isCartOpen: false
 };
 
 
-export const cartCountSlice = createSlice({
+export const cartSlice = createSlice({
     name: 'counter',
     initialState,
 
@@ -22,13 +24,17 @@ export const cartCountSlice = createSlice({
             InitialState.products.push(action.payload);
             InitialState.value += 1;
         },
+
+        showCart: (InitialState) => {
+            InitialState.isCartOpen = !InitialState.isCartOpen;
+        },
     }
 
 });
 
-export const { addToCart } = cartCountSlice.actions;
+export const { addToCart, showCart } = cartSlice.actions;
 
-export default cartCountSlice.reducer;
+export default cartSlice.reducer;
 
 
 

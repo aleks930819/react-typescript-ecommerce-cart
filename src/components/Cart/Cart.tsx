@@ -1,8 +1,15 @@
+import { useDispatch } from 'react-redux';
 import Button from '../UI/Button';
+import { showCart } from '../../store/slices/cartSlice';
 
 type Props = {};
 
 const Cart = (props: Props) => {
+  const dispatch = useDispatch();
+  const closeCartHandler = () => {
+    dispatch(showCart());
+  };
+
   return (
     <div
       className="relative z-10"
@@ -28,6 +35,7 @@ const Cart = (props: Props) => {
                       <button
                         type="button"
                         className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                        onClick={() => closeCartHandler()}
                       >
                         <span className="sr-only">Close panel</span>
                         <svg

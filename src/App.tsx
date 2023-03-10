@@ -1,14 +1,17 @@
+import { useSelector } from 'react-redux';
 import Cart from './components/Cart/Cart';
 import Header from './components/Header/Header';
 import Products from './components/Products/Products';
+import { isCartOpen } from './store';
 
 function App() {
-  const isShown = true;
+  const isCartShown = useSelector(isCartOpen);
+
   return (
     <>
       <Header />
       <Products />
-      {isShown  && <Cart/> }
+      {isCartShown && <Cart />}
     </>
   );
 }

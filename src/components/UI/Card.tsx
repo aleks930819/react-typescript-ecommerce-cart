@@ -2,7 +2,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 
 import Button from './Button';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/slices/cartCountSlice';
+import { addToCart } from '../../store/slices/cartSlice';
 
 type CardProps = {
   id: number;
