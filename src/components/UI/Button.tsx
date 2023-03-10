@@ -10,6 +10,7 @@ interface ButtonProps {
   rounded?: boolean;
   to?: string;
   className?: string;
+  onClick?: () => void;
 }
 
 const Button = ({
