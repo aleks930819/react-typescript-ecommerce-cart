@@ -26,7 +26,7 @@ const Button = ({
     rest.className,
     'flex justify-between items-center px-7 py-2.5  border h-8 transition duration-300 ease-in-out',
     {
-      'border-blue-500 bg-cyan-900 p-5 text-white hover:bg-cyan-700':
+      'border-blue-500 bg-cyan-700 p-5 text-white hover:bg-cyan-900 rounded-md':
         primary,
       'border-green-500 bg-green-500 text-white': success,
 
