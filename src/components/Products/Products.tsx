@@ -1,6 +1,5 @@
-import { ShoppingCartIcon } from '@heroicons/react/24/solid';
-
 import Button from '../UI/Button';
+import Card from '../UI/Card';
 
 type Props = {};
 
@@ -64,25 +63,14 @@ const data = [
 const Products = (props: Props) => {
   return (
     <div className="grid grid-cols-4 gap-4 w-3/4 mx-auto mt-[200px] mb-[200px]">
-     
-
       {data.map((item) => (
-        <div className="bg-white rounded-lg shadow-lg p-4" key={item?.id}>
-          <div className="pb-5">
-            <img
-              src={item?.img}
-              alt={item?.name}
-              className="w-full object-center h-64"
-            />
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold pb-5">{item?.name}</h3>
-            <p className="text-gray-500 pb-5">${item?.price}</p>
-            <Button primary className='mb-5'>
-              Add to cart <ShoppingCartIcon className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        </div>
+        <Card
+          key={item?.id}
+          name={item?.name}
+          price={item?.price}
+          img={item?.img}
+          id={item?.id}
+        />
       ))}
     </div>
   );
