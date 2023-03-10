@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { Product } from '../../shared/interfaces';
+
 interface InitialState {
     value: number;
-    products: number[]
+    products: Product[]
     isCartOpen: boolean;
 }
 
@@ -13,14 +15,15 @@ const initialState: InitialState = {
 };
 
 
+
 export const cartSlice = createSlice({
     name: 'counter',
     initialState,
 
     reducers: {
 
-        addToCart: (InitialState, action: PayloadAction<number>) => {
-            if (InitialState.products.includes(action.payload)) return;
+        addToCart: (InitialState, action: PayloadAction<Product>) => {
+            if (InitialState.products.find((product) => product.id === action.payload.id)) return;
             InitialState.products.push(action.payload);
             InitialState.value += 1;
         },

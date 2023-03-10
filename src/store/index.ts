@@ -17,5 +17,6 @@ export type AppDispatch = typeof store.dispatch;
 
 export const selectCartCount = (state: RootState) => state.cartCount.value;
 export const isCartOpen = (state: RootState) => state.cartCount.isCartOpen;
+export const seletCartProducts = (state: RootState) => state.cartCount.products;
 
 export { useGetProductsQuery } from './apis/productsApi';

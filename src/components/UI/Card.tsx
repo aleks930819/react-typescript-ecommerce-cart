@@ -3,6 +3,7 @@ import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/slices/cartSlice';
+import { Product } from '../../shared/interfaces';
 
 type CardProps = {
   id: number;
@@ -13,8 +14,8 @@ type CardProps = {
 
 const Card = ({ id, img, name, price }: CardProps) => {
   const dispatch = useDispatch();
-  const addToCartHandler = (id: number) => {
-    dispatch(addToCart(id));
+  const addToCartHandler = ({ id, img, name, price }: Product) => {
+    dispatch(addToCart({ id, img, name, price }));
   };
   return (
     <div className="bg-white rounded-lg shadow-lg p-4" key={id}>
@@ -23,8 +24,12 @@ const Card = ({ id, img, name, price }: CardProps) => {
       </div>
       <div>
         <h3 className="text-lg font-semibold pb-5">{name}</h3>
-        <p className="text-gray-500 pb-5">${price}</p>
-        <Button primary className="mb-5" onClick={() => addToCartHandler(id)}>
+        <p className="text-gray-500 pb-5">Price: ${price}</p>
+        <Button
+          primary
+          className="mb-5"
+          onClick={() => addToCartHandler({ id, img, name, price })}
+        >
           Add to cart <ShoppingCartIcon className="w-4 h-4 ml-2" />
         </Button>
       </div>

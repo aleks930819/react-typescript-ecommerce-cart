@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
+
 import Button from '../UI/Button';
+
 import { showCart } from '../../store/slices/cartSlice';
 
 type Props = {};
