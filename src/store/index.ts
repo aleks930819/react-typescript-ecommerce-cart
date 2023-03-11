@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import productsApi from './apis/productsApi';
 import cartReducer from './slices/cartSlice';
 
-export const store = configureStore({
+export const store  = configureStore({
     reducer: {
         cartCount: cartReducer,
         [productsApi.reducerPath]: productsApi.reducer,

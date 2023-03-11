@@ -28,6 +28,11 @@ export const cartSlice = createSlice({
             InitialState.value += 1;
         },
 
+        removeFromCart: (InitialState, action: PayloadAction<number>) => {
+            InitialState.products = InitialState.products.filter((product) => product.id !== action.payload);
+            InitialState.value -= 1;
+        },
+
         showCart: (InitialState) => {
             InitialState.isCartOpen = !InitialState.isCartOpen;
         },
@@ -35,7 +40,7 @@ export const cartSlice = createSlice({
 
 });
 
-export const { addToCart, showCart } = cartSlice.actions;
+export const { addToCart, showCart,removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
 
