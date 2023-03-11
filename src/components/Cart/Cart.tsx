@@ -5,11 +5,12 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import Button from '../UI/Button';
 
 import { showCart, removeFromCart } from '../../store/slices/cartSlice';
-import { seletCartProducts } from '../../store';
+import { selectTotalCartPrice, seletCartProducts } from '../../store';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector(seletCartProducts);
+  const totalCartPrice = useSelector(selectTotalCartPrice);
   const closeCartHandler = () => {
     dispatch(showCart());
   };
@@ -115,7 +116,7 @@ const Cart = () => {
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>$262.00</p>
+                    <p>${totalCartPrice}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Shipping and taxes calculated at checkout.
@@ -132,6 +133,5 @@ const Cart = () => {
     </div>
   );
 };
-
 
 export default Cart;

@@ -6,12 +6,14 @@ interface InitialState {
     value: number;
     products: Product[]
     isCartOpen: boolean;
+    totalCartprice: number;
 }
 
 const initialState: InitialState = {
     value: 0,
     products: [],
-    isCartOpen: false
+    isCartOpen: false,
+    totalCartprice: 0
 };
 
 
@@ -26,6 +28,7 @@ export const cartSlice = createSlice({
             if (InitialState.products.find((product) => product.id === action.payload.id)) return;
             InitialState.products.push(action.payload);
             InitialState.value += 1;
+            InitialState.totalCartprice = InitialState.products.reduce((acc, product) => acc + product.price, 0);
         },
 
         removeFromCart: (InitialState, action: PayloadAction<number>) => {
@@ -36,11 +39,13 @@ export const cartSlice = createSlice({
         showCart: (InitialState) => {
             InitialState.isCartOpen = !InitialState.isCartOpen;
         },
+
+
     }
 
 });
 
-export const { addToCart, showCart,removeFromCart } = cartSlice.actions;
+export const { addToCart, showCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
 
