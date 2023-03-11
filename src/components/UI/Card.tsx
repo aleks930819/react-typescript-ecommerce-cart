@@ -5,14 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../../store/slices/cartSlice';
 import { Product } from '../../shared/interfaces';
 
-type CardProps = {
-  id: number;
-  img: string;
-  name: string;
-  price: number;
-};
-
-const Card = ({ id, img, name, price }: CardProps) => {
+const Card = ({ id, img, name, price }: Product) => {
   const dispatch = useDispatch();
   const addToCartHandler = ({ id, img, name, price }: Product) => {
     dispatch(addToCart({ id, img, name, price }));

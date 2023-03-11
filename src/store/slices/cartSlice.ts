@@ -62,8 +62,20 @@ export const cartSlice = createSlice({
             const product = InitialState.products.find((product) => product.id === action.payload);
             if (product && product.qty) {
                 product.qty = product.qty - 1;
+
+                if (product.qty === 0) {
+                    InitialState.products = InitialState.products.filter((product) => product.id !== action.payload);
+                    InitialState.value -= 1;
+                    InitialState.totalCartprice = InitialState.products.reduce((acc, product) => acc + product.price, 0);
+                    toast.success('Product removed from cart');
+                    return;
+                }
                 InitialState.totalCartprice = InitialState.totalCartprice - product.price;
+
             }
+
+
+
         },
 
 
