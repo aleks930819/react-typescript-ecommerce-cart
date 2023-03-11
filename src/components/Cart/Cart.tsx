@@ -4,19 +4,35 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 import Button from '../UI/Button';
 
-import { showCart, removeFromCart } from '../../store/slices/cartSlice';
-import { selectTotalCartPrice, seletCartProducts } from '../../store';
+import { showCart, removeFromCart,increaseQty,decreaseQty } from '../../store/slices/cartSlice';
+import {
+ 
+  selectTotalCartPrice,
+  seletCartProducts,
+} from '../../store';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector(seletCartProducts);
   const totalCartPrice = useSelector(selectTotalCartPrice);
+
+
   const closeCartHandler = () => {
     dispatch(showCart());
   };
 
   const removeFromCartHandler = (id: number) => {
     dispatch(removeFromCart(id));
+  };
+
+ 
+
+  const increaseQtyHandler = (id: number) => {
+    dispatch(increaseQty(id));
+  };
+
+  const decreaseQtyHandler = (id: number) => {
+    dispatch(decreaseQty(id));
   };
 
   return (
@@ -90,9 +106,15 @@ const Cart = () => {
                               </div>
                               <div className="flex flex-1 items-end justify-between text-sm">
                                 <div className="flex gap-2">
-                                  <ChevronLeftIcon className="w-4 h-4 cursor-pointer" />
-                                  <p className="text-gray-500">Qty 1</p>
-                                  <ChevronRightIcon className="w-4 h-4 cursor-pointer" />
+                                  <ChevronLeftIcon className="w-4 h-4 cursor-pointer" 
+                                  onClick={() => decreaseQtyHandler(product.id)}
+                                  />
+                                  <p className="text-gray-500">
+                                    Qty {product.qty}
+                                  </p>
+                                  <ChevronRightIcon className="w-4 h-4 cursor-pointer" 
+                                  onClick={() => increaseQtyHandler(product.id)}
+                                  />
                                 </div>
                                 <div className="flex">
                                   <button
@@ -116,7 +138,7 @@ const Cart = () => {
                 <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>${totalCartPrice}</p>
+                    <p>${totalCartPrice.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Shipping and taxes calculated at checkout.
